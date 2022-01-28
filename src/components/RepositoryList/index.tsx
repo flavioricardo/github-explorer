@@ -1,27 +1,32 @@
 import { RepositoryItem } from "../RepositoryItem";
 import "../../styles/repositories.scss";
 import { useEffect, useState } from "react";
-
-// https://api.github.com/users/flavioricardo/repos
-
+interface UserProps {
+  user?: string | string[];
+}
 interface Repository {
   name: string;
   description?: string;
   html_url: string;
 }
 
-export function RepositoryList() {
+export function RepositoryList(props: UserProps) {
+  const API_URL = "https://api.github.com";
+
+  const { user } = props;
   const [repositories, setRepositories] = useState<Repository[]>([]);
 
   useEffect(() => {
-    fetch("https://api.github.com/users/flavioricardo/repos")
+    fetch(`${API_URL}/users/${user}/repos`)
       .then((response) => response.json())
-      .then((data) => setRepositories(data));
+      .then((data) => setRepositories(data ?? []));
   }, []);
 
   return (
     <section className="repository-list">
-      <h1>Repository List</h1>
+      <h1>
+        Repository list from <a href={`https://github.com/${user}`}>{user}</a>
+      </h1>
 
       <ul>
         {repositories?.length &&

@@ -11,6 +11,7 @@
     "deploy": "gh-pages -d build"
   },
   "dependencies": {
+    "query-string": "^7.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2"
   },
