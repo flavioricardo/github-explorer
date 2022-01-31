@@ -4,11 +4,11 @@ import { RepositoryList } from "./components/RepositoryList";
 import "./styles/global.scss";
 
 export default function App() {
-  const query = queryString.parse(location.search);
-  const { user } = query;
+  let params = new URLSearchParams(location.search);
+  const username = params.get("username");
 
-  return user ? (
-    <RepositoryList user={user} />
+  return username ? (
+    <RepositoryList username={username} />
   ) : (
     <section className="repository-list">
       <h1>No user selected!</h1>

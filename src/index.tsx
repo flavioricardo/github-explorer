@@ -6,6 +6,7 @@ render(
   <BrowserRouter>
     <Routes>
       <Route path="/" element={<App />} />
+      <Route path="/:username" element={<App />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById("root")
